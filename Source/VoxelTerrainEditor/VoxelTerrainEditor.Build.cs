@@ -4,7 +4,7 @@ using UnrealBuildTool;
 
 public class VoxelTerrainEditor :ModuleRules
 {
-    public VoxelTerrainEditor( TargetInfo Target )
+    public VoxelTerrainEditor(ReadOnlyTargetRules Target) : base(Target)
     {
 
         PublicIncludePaths.AddRange(

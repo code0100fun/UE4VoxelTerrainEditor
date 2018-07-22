@@ -231,28 +231,28 @@ void FoliageBuilderAsyncTask::DoWork()
 					switch (foliageType->Scaling)
 					{
 					case EVoxelTerrainFoliageScaling::Uniform:
-						scaling.X = SeededRandom(seed2)*(foliageType->ScaleX.Max - foliageType->ScaleX.Min) + foliageType->ScaleX.Min;
+						scaling.X = SeededRandom(seed2)*(foliageType->ScaleXMax - foliageType->ScaleXMin) + foliageType->ScaleXMin;
 						scaling.Y = scaling.X;
 						scaling.Z = scaling.X;
 						break;
 					case EVoxelTerrainFoliageScaling::Free:
-						scaling.X = SeededRandom(seed2)*(foliageType->ScaleX.Max - foliageType->ScaleX.Min) + foliageType->ScaleX.Min;
-						scaling.Y = SeededRandom(seed2)*(foliageType->ScaleY.Max - foliageType->ScaleY.Min) + foliageType->ScaleY.Min;
-						scaling.Z = SeededRandom(seed2)*(foliageType->ScaleZ.Max - foliageType->ScaleZ.Min) + foliageType->ScaleZ.Min;
+						scaling.X = SeededRandom(seed2)*(foliageType->ScaleXMax - foliageType->ScaleXMin) + foliageType->ScaleXMin;
+						scaling.Y = SeededRandom(seed2)*(foliageType->ScaleYMax - foliageType->ScaleYMin) + foliageType->ScaleYMin;
+						scaling.Z = SeededRandom(seed2)*(foliageType->ScaleZMax - foliageType->ScaleZMin) + foliageType->ScaleZMin;
 						break;
 					case EVoxelTerrainFoliageScaling::LockXY:
-						scaling.X = SeededRandom(seed2)*(foliageType->ScaleX.Max - foliageType->ScaleX.Min) + foliageType->ScaleX.Min;
+						scaling.X = SeededRandom(seed2)*(foliageType->ScaleXMax - foliageType->ScaleXMin) + foliageType->ScaleXMin;
 						scaling.Y = scaling.X;
-						scaling.Z = SeededRandom(seed2)*(foliageType->ScaleZ.Max - foliageType->ScaleZ.Min) + foliageType->ScaleZ.Min;
+						scaling.Z = SeededRandom(seed2)*(foliageType->ScaleZMax - foliageType->ScaleZMin) + foliageType->ScaleZMin;
 						break;
 					case EVoxelTerrainFoliageScaling::LockXZ:
-						scaling.X = SeededRandom(seed2)*(foliageType->ScaleX.Max - foliageType->ScaleX.Min) + foliageType->ScaleX.Min;
-						scaling.Y = SeededRandom(seed2)*(foliageType->ScaleY.Max - foliageType->ScaleY.Min) + foliageType->ScaleY.Min;
+						scaling.X = SeededRandom(seed2)*(foliageType->ScaleXMax - foliageType->ScaleXMin) + foliageType->ScaleXMin;
+						scaling.Y = SeededRandom(seed2)*(foliageType->ScaleYMax - foliageType->ScaleYMin) + foliageType->ScaleYMin;
 						scaling.Z = scaling.X;
 						break;
 					case EVoxelTerrainFoliageScaling::LockYZ:
-						scaling.X = SeededRandom(seed2)*(foliageType->ScaleX.Max - foliageType->ScaleX.Min) + foliageType->ScaleX.Min;
-						scaling.Y = SeededRandom(seed2)*(foliageType->ScaleY.Max - foliageType->ScaleY.Min) + foliageType->ScaleY.Min;
+						scaling.X = SeededRandom(seed2)*(foliageType->ScaleXMax - foliageType->ScaleXMin) + foliageType->ScaleXMin;
+						scaling.Y = SeededRandom(seed2)*(foliageType->ScaleYMax - foliageType->ScaleYMin) + foliageType->ScaleYMin;
 						scaling.Z = scaling.Y;
 						break;
 					}
@@ -270,7 +270,7 @@ void FoliageBuilderAsyncTask::DoWork()
 		layer->Size = transforms.Num();
 		if (layer->Size > 0)
 		{
-			layer->InstanceBuffer.AllocateInstances(layer->Size);
+			layer->InstanceBuffer.AllocateInstances(layer->Size, EResizeBufferFlags::AllowSlackOnGrow, true);
 
 			for (int j = 0; j < transforms.Num(); j++)
 			{

@@ -67,11 +67,17 @@ class UVoxelTerrainFoliageType : public UDataAsset
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
 		TEnumAsByte<EVoxelTerrainFoliageScaling> Scaling = EVoxelTerrainFoliageScaling::Uniform;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
-		FFloatInterval ScaleX;
+		float ScaleXMin;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
-		FFloatInterval ScaleY;
+		float ScaleXMax;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
-		FFloatInterval ScaleZ;
+		float ScaleYMin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
+		float ScaleYMax;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
+		float ScaleZMin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Scaling")
+		float ScaleZMax;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lighting")
 		bool CastStaticShadow = true;
